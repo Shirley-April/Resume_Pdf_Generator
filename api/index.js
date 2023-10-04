@@ -1,13 +1,13 @@
+const express = require("express");
 
-const express = require("express")
-
-const app = express()
-
+const app = express();
 
 app.get("/", (req, res) => {
-    res.send("Home route!")
-})
+  res.send("Home route!");
+});
 
-const PORT = 3005
+const PORT = 3005;
 
-app.listen(PORT, () => console.log("App running on port" + PORT))
+app.listen(PORT, () => console.log("App running on port" + PORT));
+
+module.exports = app
