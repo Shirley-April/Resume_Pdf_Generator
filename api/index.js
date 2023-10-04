@@ -2,9 +2,13 @@ const express = require("express");
 
 const app = express();
 
-app.get("/test", (req, res) => {
+app.get("/api", (req, res) => {
   res.send("Home route!");
 });
+
+app.get("/api/test", (req, res) => {
+    res.send("Test route!");
+  });
 
 const PORT = 3005;
 
