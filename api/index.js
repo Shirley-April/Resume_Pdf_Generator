@@ -1,13 +1,16 @@
 const express = require("express");
+var bodyParser = require('body-parser')
 
 const app = express();
+
+app.use(bodyParser.json())
 
 app.get("/api", (req, res) => {
   res.send("Home route!");
 });
 
 app.post("/api/post", (req, res) => {
-  const body = { status: 200, message: "POST Request" };
+  const body = req.body
   res.json(body);
 });
 
