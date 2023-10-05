@@ -12,7 +12,7 @@ app.get("/api", (req, res) => {
   res.send("Home route!");
 });
 
-app.get("/api/file", async (req, res) => {
+app.post("/api/file", async (req, res) => {
   const resume = req.body;
 
   try {
