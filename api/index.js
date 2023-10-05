@@ -1,6 +1,7 @@
 const express = require("express");
 var bodyParser = require("body-parser");
-const path = require("path");
+
+const { createResume } = require("./create_resume");
 
 const app = express();
 app.use(express.static("public"));
@@ -11,14 +12,15 @@ app.get("/api", (req, res) => {
   res.send("Home route!");
 });
 
-app.post("/api/post", (req, res) => {
-  const body = req.body;
-  res.json(body);
-});
+app.get("/api/file", async (req, res) => {
+  const resume = req.body;
 
-app.get("/api/file", (req, res) => {
-  const file_path = path.join(__dirname, "/public");
-  res.sendFile("DStv-logo.jpg", { root: file_path });
+  try {
+    const filePath = await createResume(resume);
+    res.sendFile(filePath, { root: __dirname });
+  } catch (error) {
+    res.status(500).send("Error creating the file: " + error.message);
+  }
 });
 
 const PORT = 3005;
