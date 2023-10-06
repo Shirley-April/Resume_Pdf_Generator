@@ -18,9 +18,15 @@ app.post("/api/file", async (req, res) => {
 
   try {
     const filePath = await createResume(resume);
-    const rootPath = path.join(__dirname, "temp")
-    console.log("ROOT", rootPath);
-    res.sendFile(filePath, { root: rootPath });
+    // const rootPath = path.join(__dirname, "temp")
+    const current_dir = __dirname
+    const parent_dir = path.dirname(current_dir)
+
+    const rootPath = path.join(parent_dir, "/tmp")
+
+    console.log("ROOT_PATH", rootPath);
+
+    res.sendFile("resume.pdf", { root: rootPath });
   } catch (error) {
     res.status(500).send("Error creating the file: " + error.message);
   }

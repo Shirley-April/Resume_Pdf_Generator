@@ -1,5 +1,6 @@
 const PDFDocument = require("pdfkit");
 const fs = require("fs");
+const path = require("path")
 
 const createResume = (resume) => {
   return new Promise((resolve, reject) => {
@@ -7,13 +8,16 @@ const createResume = (resume) => {
 
     generateHeader(resume, doc);
 
-    const path = `${__dirname}/tmp/resume.pdf`;
+    const current_dir = __dirname
+    const parent_dir = path.dirname(current_dir)
+
+    const file_path  = path.join(parent_dir, "/tmp/resume.pdf")
 
     doc.end();
-    const stream = doc.pipe(fs.createWriteStream(path));
+    const stream = doc.pipe(fs.createWriteStream(file_path));
 
     stream.on("finish", () => {
-      resolve("resume.pdf");
+      resolve(file_path);
     });
 
     stream.on("error", (error) => {
