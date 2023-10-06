@@ -7,7 +7,7 @@ const createResume = (resume) => {
 
     generateHeader(resume, doc);
 
-    const path = `${__dirname}/resume.pdf`;
+    const path = `${__dirname}/temp/resume.pdf`;
 
     doc.end();
     const stream = doc.pipe(fs.createWriteStream(path));

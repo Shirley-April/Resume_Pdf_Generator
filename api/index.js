@@ -1,5 +1,6 @@
 const express = require("express");
 var bodyParser = require("body-parser");
+const path = require("path")
 
 const { createResume } = require("./create_resume");
 
@@ -17,7 +18,9 @@ app.post("/api/file", async (req, res) => {
 
   try {
     const filePath = await createResume(resume);
-    res.sendFile(filePath, { root: __dirname });
+    const rootPath = path.join(__dirname, "temp")
+    console.log("ROOT", rootPath);
+    res.sendFile(filePath, { root: rootPath });
   } catch (error) {
     res.status(500).send("Error creating the file: " + error.message);
   }
