@@ -5,6 +5,7 @@ const path = require("path");
 const { createResume } = require("./create_resume");
 const { uploadFile } = require("./dropbox/uploadFile");
 const { downloadFile } = require("./dropbox/downloadFile");
+const { deleteFile } = require("./dropbox/deleteFile");
 
 const app = express();
 app.use(express.static("public"));
@@ -29,6 +30,7 @@ app.post("/api/file", async (req, res) => {
         response: download_file_link,
       });
     }
+    deleteFile()
   } catch (error) {
     res.status(500).send("Error creating the file: " + error.message);
   }
