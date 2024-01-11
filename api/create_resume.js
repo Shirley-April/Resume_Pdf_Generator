@@ -15,7 +15,7 @@ const createResume = (resume) => {
     generateWorkExp(resume, doc);
     generateKeyWords(resume, doc);
 
-    const file_path = "resume.pdf"
+    const file_path = "/tmp/resume.pdf";
 
     doc.end();
     const stream = doc.pipe(fs.createWriteStream(file_path));
@@ -42,7 +42,7 @@ const generateHeader = (resume, doc) => {
 const generateDivider = (doc) => {
   doc
     .moveTo(205, 100) // set the current point
-    .lineTo(205, 200)
+    .lineTo(205, 210)
     .strokeColor("#EAF1FB")
     .stroke();
 
@@ -72,6 +72,15 @@ const generateContact = (resume, doc) => {
   doc.font(bold_font).fontSize(10).text(`Github`);
   doc.moveDown(0.2);
   doc.font(regular_font).fontSize(10).text(`${resume.contact.github}`);
+  doc.moveDown(0.3);
+
+
+  doc.font(bold_font).fontSize(10).text(`LinkedIn`);
+  doc.moveDown(0.2);
+  doc
+    .font(regular_font)
+    .fontSize(10)
+    .text(`${resume.contact.linkedin}`, { width: "150" });
   doc.moveDown(2);
 };
 
@@ -158,9 +167,7 @@ const generateWorkExp = (resume, doc) => {
 };
 
 const generateKeyWords = (resume, doc) => {
-  doc.moveDown(1).fontSize(1)
-  .fill("#FFFFFF")
-  .text(resume.keywords, 1, 5);
+  doc.moveDown(1).fontSize(1).fill("#FFFFFF").text(resume.keywords, 1, 5);
 };
 
 module.exports = { createResume };

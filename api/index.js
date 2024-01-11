@@ -1,6 +1,7 @@
 const express = require("express");
 var bodyParser = require("body-parser");
 const path = require("path");
+const cors = require("cors")
 
 const { createResume } = require("./create_resume");
 const { uploadFile } = require("./dropbox/uploadFile");
@@ -11,6 +12,7 @@ const app = express();
 app.use(express.static("public"));
 
 app.use(bodyParser.json());
+app.use(cors())
 
 app.get("/api", (req, res) => {
   res.send("Home route!");
