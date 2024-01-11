@@ -17,7 +17,7 @@ const uploadFile = (filePath) => {
         reject({ message: "Error reading file", error: err });
       } else {
         dbx
-          .filesUpload({ path: `/${filePath}`, contents })
+          .filesUpload({ path: `/resume.pdf`, contents })
           .then((response) => {
             resolve(response);
           })
