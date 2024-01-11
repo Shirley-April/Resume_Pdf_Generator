@@ -34,6 +34,7 @@ app.post("/api/file", async (req, res) => {
     }
     deleteFile()
   } catch (error) {
+    console.log("Index error", error);
     res.status(500).send("Error creating the file: " + error.message);
   }
 });

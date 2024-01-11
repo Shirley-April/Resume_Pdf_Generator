@@ -16,6 +16,7 @@ const downloadFile = () => {
         resolve(response.result.link);
       })
       .catch((error) => {
+        console.log("DOWNLOAD ERR", error);
         reject({ message: "Link download error", error });
       });
   });

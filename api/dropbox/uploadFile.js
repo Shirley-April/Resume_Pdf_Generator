@@ -22,7 +22,7 @@ const uploadFile = (filePath) => {
             resolve(response);
           })
           .catch((err) => {
-            console.log("ERR", err);
+            console.log("upload ERR", err);
             reject({ message: "Error uploading file", error: err });
           });
       }
