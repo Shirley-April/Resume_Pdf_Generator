@@ -1,6 +1,7 @@
 const PDFDocument = require("pdfkit");
 const fs = require("fs");
 const path = require("path");
+const os = require("os");
 
 const createResume = (resume) => {
   return new Promise((resolve, reject) => {
