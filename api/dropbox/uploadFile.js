@@ -14,14 +14,16 @@ const uploadFile = (filePath) => {
       refreshToken: process.env.REFRESH_TOKEN,
     });
 
-    const mypath = path.join(__dirname, '..', '..', 'tmp', 'resume.pdf');
+    const mypath = path.join(__dirname, '..', '..', filePath);
 
     fs.readFile(mypath, (err, contents) => {
       if (err) {
         console.log("3333443", filePath);
+        console.log("mypath err", mypath);
 
         reject({ message: "Error reading file", error: err });
       } else {
+        console.log("mypath good", mypath);
         dbx
           .filesUpload({ path: `/resume.pdf`, contents })
           .then((response) => {
