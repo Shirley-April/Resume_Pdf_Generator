@@ -1,4 +1,6 @@
 require("dotenv").config();
+const path = require("path");
+
 
 const { Dropbox } = require("dropbox");
 
@@ -12,8 +14,12 @@ const uploadFile = (filePath) => {
       refreshToken: process.env.REFRESH_TOKEN,
     });
 
-    fs.readFile(filePath, (err, contents) => {
+    const mypath = path.join(__dirname, '..', '..', 'tmp', 'resume.pdf');
+
+    fs.readFile(mypath, (err, contents) => {
       if (err) {
+        console.log("3333443", filePath);
+
         reject({ message: "Error reading file", error: err });
       } else {
         dbx
