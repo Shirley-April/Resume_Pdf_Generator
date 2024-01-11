@@ -15,10 +15,11 @@ const createResume = (resume) => {
     generateWorkExp(resume, doc);
     generateKeyWords(resume, doc);
 
-    const file_path = "/tmp/resume.pdf";
+    const file_path = "resume.pdf";
+    const tmpDir = '/tmp';
 
     doc.end();
-    const stream = doc.pipe(fs.createWriteStream(file_path));
+    const stream = doc.pipe(fs.createWriteStream(path.join(tmpDir, file_path)));
 
     stream.on("finish", () => {
       resolve(file_path);
