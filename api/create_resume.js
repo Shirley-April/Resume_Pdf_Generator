@@ -15,7 +15,8 @@ const createResume = (resume) => {
     generateWorkExp(resume, doc);
     generateKeyWords(resume, doc);
 
-    const file_path = "tmp/resume.pdf";
+    const tmpDir = os.tmpdir(); // Use the system's temporary directory
+    const file_path = path.join(tmpDir, "resume.pdf");
     const stream = doc.pipe(fs.createWriteStream(file_path));
 
     stream.on("finish", () => {
